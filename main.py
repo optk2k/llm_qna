@@ -5,7 +5,7 @@ import kagglehub # type: ignore
 from langchain_core.documents.base import Document
 import typer
 from langchain.chains import RetrievalQA
-from langchain_community.document_loaders.csv_loader import CSVLoader
+from langchain_community.document_loaders.text import TextLoader
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -20,7 +20,7 @@ def data_to_vector() -> None:
     path_csv = kagglehub.dataset_download(
         "shohinurpervezshohan/freelancer-earnings-and-job-trends", force_download=True
     )
-    loader = CSVLoader(
+    loader = TextLoader(
         file_path=pathlib.Path(path_csv)
         .joinpath("freelancer_earnings_bd.csv")
         .__str__()
